@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Refresh</title>
+    <style>
+        body {
+            background-color: #c7c7c7;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+
+        }
+        .s-time h1 {
+                font-size: 1rem;
+                color: #293847;;
+
+
+            }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #c70a0a;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            color: #c70a0a;
+            font-family: Arial, sans-serif;
+        }
+
+        .s-time {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 10%;
+        }
+
+        .bottom-copy {
+
+            bottom: 0;
+            left: 0;
+            right: 0;
+            min-height: 100px;
+            text-align: center;
+        }
+
+        .dpd-20 img {
+
+            max-width: 80px;
+        }
+
+        @media only screen and (max-width: 769px) {
+            body {
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 15px;
+            }
+
+            .s-time {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height: 80vh;
+
+            }
+
+           
+
+            picture img {
+                max-width: 100px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="s-time">
+            <h1>Nous recevons actuellement un grand nombre de demandes.<br> Votre page se rechargera dans quelques
+                secondes.
+            </h1>
+            <div class="countdown-container">
+                <div class="countdown" id="countdown"><span id="time">10</span></div>
+            </div>
+            <h1> Merci de votre patience !</h1>
+        </section>
+
+        <section class="bottom-copy">
+            <div class="dpd-20">
+                <picture>
+                    <img src="https://mk-media.mytek.tn/media/logo/stores/1/LOGO-MYTEK-176PX-INVERSE.png"
+                        alt="logo_mytek">
+                </picture>
+            </div>
+        </section>
+
+    </main>
+</body>
+<script>
+
+    setInterval(() => {
+        let time = Number(document.getElementById("time").innerHTML);
+        if (time > 0) {
+
+            time <= 10 ? document.getElementById("time").innerHTML = "0" + (time - 1) : document.getElementById("time").innerHTML = time - 1
+        }
+    }, 1000)
+
+    if (localStorage.getItem("reloadCounter") === null) {
+        localStorage.setItem("reloadCounter", 0)
+    }
+    let reloadCounter = Number(localStorage.getItem("reloadCounter"))
+    if (reloadCounter < 2) {
+        setTimeout(() => {
+            reloadCounter++
+            localStorage.setItem("reloadCounter", reloadCounter)
+            location.reload()
+        }, 10000);
+
+    } else {
+        localStorage.removeItem("reloadCounter")
+        // location.replace("https://mytek.tn/");
+    }
+
+</script>
+
+</html
